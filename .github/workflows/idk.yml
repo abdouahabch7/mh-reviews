@@ -1,0 +1,29 @@
+name: Submit Review
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  submit_review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update reviews file
+        run: |
+          echo "Updating reviews.json"
+          # Here you would process the incoming review data and append to the reviews.json
+          # You can use the GitHub API to edit files in your repository, e.g., add a new review to reviews.json
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "your-username"
+          git add reviews.json
+          git commit -m "Updated reviews.json with new review"
+          git push
